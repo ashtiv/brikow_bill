@@ -26,13 +26,13 @@ function Bill() {
                         <tr key={index}>
                             <td className="text-sm p-2 border-t border-gray-300">{item.description}</td>
                             <td className="text-sm p-2 border-t border-gray-300">{item.quantity}</td>
-                            <td className="text-sm p-2 border-t border-gray-300">{item.price}</td>
-                            <td className="text-sm p-2 border-t border-gray-300">{item.quantity * item.price}</td>
+                            <td className="text-sm p-2 border-t border-gray-300">${item.price}</td>
+                            <td className="text-sm p-2 border-t border-gray-300">${item.quantity * item.price}</td>
                         </tr>
                     ))}
                     <tr>
                         <td colSpan="3" className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">Total:</td>
-                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">{total1}</td>
+                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">${total1}</td>
                     </tr>
                     <tr>
                         <td colSpan="4" className="text-xl font-bold text-gray-700 text-center p-2 bg-gray-100 border-t border-gray-300">Type 2 Items</td>
@@ -41,17 +41,17 @@ function Bill() {
                         <tr key={index}>
                             <td className="text-sm p-2 border-t border-gray-300">{item.description}</td>
                             <td className="text-sm p-2 border-t border-gray-300">{item.quantity}</td>
-                            <td className="text-sm p-2 border-t border-gray-300">{item.price}</td>
-                            <td className="text-sm p-2 border-t border-gray-300">{item.quantity * item.price}</td>
+                            <td className="text-sm p-2 border-t border-gray-300">${item.price}</td>
+                            <td className="text-sm p-2 border-t border-gray-300">${item.quantity * item.price}</td>
                         </tr>
                     ))}
                     <tr>
                         <td colSpan="3" className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">Total:</td>
-                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">{total2}</td>
+                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">${total2}</td>
                     </tr>
                     <tr>
                         <td colSpan="3" className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">Grand Total:</td>
-                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">{total1 + total2}</td>
+                        <td className="text-sm font-semibold p-2 bg-gray-100 border-t border-gray-300">${total1 + total2}</td>
                     </tr>
                 </tbody>
             </table>
