@@ -60,12 +60,14 @@ function BillGenerator() {
             <h3 class="text-xl font-bold text-gray-700 m-8 uppercase">Type 1 Items</h3>
             {items1.map((item, index) => (
                 <div key={index} className="m-5">
+                    <label className='form-label ml-3'>Description</label>
                     <input
                         name="description"
                         value={item.description}
                         onChange={event => handleInputChange1(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
+                    <label className='form-label'>Quantity</label>
                     <input
                         name="quantity"
                         type="number"
@@ -73,6 +75,7 @@ function BillGenerator() {
                         onChange={event => handleInputChange1(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
+                    <label className='form-label'>Price</label>
                     <input
                         name="price"
                         type="number"
@@ -91,12 +94,14 @@ function BillGenerator() {
             <h3 class="text-xl font-bold text-gray-700 uppercase m-8">Type 2 Items</h3>
             {items2.map((item, index) => (
                 <div key={index} className="m-5">
+                    <label className='form-label ml-3'>Description</label>
                     <input
                         name="description"
                         value={item.description}
                         onChange={event => handleInputChange2(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
+                    <label className='form-label'>Quantity</label>
                     <input
                         name="quantity"
                         type="number"
@@ -104,6 +109,7 @@ function BillGenerator() {
                         onChange={event => handleInputChange2(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
+                    <label className='form-label'>Price</label>
                     <input
                         name="price"
                         type="number"
