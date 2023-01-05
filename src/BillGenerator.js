@@ -4,67 +4,119 @@ import { useNavigate } from 'react-router-dom';
 function BillGenerator() {
     const navigate = useNavigate();
 
-    const navigateToNextPage = total => {
-        navigate('/bill',
-            { state: { items: items } });
+    const navigateToNextPage = (total1, total2) => {
+        navigate('/bill', { state: { items: { items1: items1, items2: items2 }, total1: total1, total2: total2 } });
     };
-    const [items, setItems] = useState([{ description: '', quantity: 0, price: 0 }]);
+    const [items1, setItems1] = useState([{ description: '', quantity: 0, price: 0 }]);
+    const [items2, setItems2] = useState([{ description: '', quantity: 0, price: 0 }]);
 
-    const handleAddItem = () => {
-        setItems([...items, { description: '', quantity: 0, price: 0 }]);
-    };
-
-    const handleDeleteItem = index => {
-        setItems(items.filter((item, i) => i !== index));
+    const handleAddItem1 = () => {
+        setItems1([...items1, { description: '', quantity: 0, price: 0 }]);
     };
 
-    const handleInputChange = (event, index) => {
+    const handleAddItem2 = () => {
+        setItems2([...items2, { description: '', quantity: 0, price: 0 }]);
+    };
+
+    const handleDeleteItem1 = index => {
+        setItems1(items1.filter((item, i) => i !== index));
+    };
+
+    const handleDeleteItem2 = index => {
+        setItems2(items2.filter((item, i) => i !== index));
+    };
+
+    const handleInputChange1 = (event, index) => {
         const { name, value } = event.target;
-        const newItems = [...items];
+        const newItems = [...items1];
         newItems[index][name] = value;
-        setItems(newItems);
+        setItems1(newItems);
+    };
+
+    const handleInputChange2 = (event, index) => {
+        const { name, value } = event.target;
+        const newItems = [...items2];
+        newItems[index][name] = value;
+        setItems2(newItems);
     };
 
     const handleGenerateBill = () => {
-        let total = 0;
-        items.forEach(item => {
-            total += item.quantity * item.price;
+        let total1 = 0;
+        items1.forEach(item => {
+            total1 += item.quantity * item.price;
         });
 
-        // Navigate to the next page and pass the total bill as a prop
-        navigateToNextPage(total);
+        let total2 = 0;
+        items2.forEach(item => {
+            total2 += item.quantity * item.price;
+        });
+
+        // Navigate to the next page and pass the total bill for each type of item as a prop
+        navigateToNextPage(total1, total2);
     };
 
     return (
         <div>
-            {items.map((item, index) => (
+            <h3 class="text-xl font-bold text-gray-700 m-8 uppercase">Type 1 Items</h3>
+            {items1.map((item, index) => (
                 <div key={index} className="m-5">
                     <input
                         name="description"
                         value={item.description}
-                        onChange={event => handleInputChange(event, index)}
+                        onChange={event => handleInputChange1(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
                     <input
                         name="quantity"
                         type="number"
                         value={item.quantity}
-                        onChange={event => handleInputChange(event, index)}
+                        onChange={event => handleInputChange1(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
                     <input
                         name="price"
                         type="number"
                         value={item.price}
-                        onChange={event => handleInputChange(event, index)}
+                        onChange={event => handleInputChange1(event, index)}
                         className="border-black border-2 rounded m-3"
                     />
-                    <button type="button" onClick={() => handleDeleteItem(index)} className="btn bg-red-500 text-white rounded-full px-4 py-2">
+                    <button type="button" onClick={() => handleDeleteItem1(index)} className="btn bg-red-500 text-white rounded-full px-4 py-2">
                         Delete
                     </button>
                 </div>
             ))}
-            <button className='ml-8 btn bg-green-500 text-white rounded-full px-4 py-2' type="button" onClick={handleAddItem}>
+            <button className='ml-8 btn bg-green-500 text-white rounded-full px-4 py-2' type="button" onClick={handleAddItem1}>
+                <span className='p-4'>Add Item</span>
+            </button>
+            <h3 class="text-xl font-bold text-gray-700 uppercase m-8">Type 2 Items</h3>
+            {items2.map((item, index) => (
+                <div key={index} className="m-5">
+                    <input
+                        name="description"
+                        value={item.description}
+                        onChange={event => handleInputChange2(event, index)}
+                        className="border-black border-2 rounded m-3"
+                    />
+                    <input
+                        name="quantity"
+                        type="number"
+                        value={item.quantity}
+                        onChange={event => handleInputChange2(event, index)}
+                        className="border-black border-2 rounded m-3"
+                    />
+                    <input
+                        name="price"
+                        type="number"
+                        value={item.price}
+                        onChange={event => handleInputChange2(event, index)}
+                        className="border-black border-2 rounded m-3"
+                    />
+                    <button type="button" onClick={() => handleDeleteItem2(index)} className="btn bg-red-500 text-white rounded-full px-4 py-2">
+                        Delete
+                    </button>
+                </div>
+            ))}
+            <button className='ml-8 btn bg-green-500 text-white rounded-full px-4 py-2' type="button" onClick={handleAddItem2}>
                 <span className='p-4'>Add Item</span>
             </button>
             <button className='m-2 btn bg-green-500 text-white rounded-full px-4 py-2' type="button" onClick={handleGenerateBill}>
